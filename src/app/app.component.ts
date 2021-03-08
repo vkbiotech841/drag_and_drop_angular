@@ -61,10 +61,10 @@ export class AppComponent {
 
 
   contentLeft = [
-    { text: "VIKRAM 1" },
-    { text: "VIKRAM 2" },
-    { text: "VIKRAM 3" },
-    { text: "VIKRAM 4" },
+    { text: "VIKRAM 1", text2: "ku" },
+    { text: "VIKRAM 2", text2: "ku" },
+    { text: "VIKRAM 3", text2: "ku" },
+    { text: "VIKRAM 4", text2: "ku" },
   ];
 
   contentRight = [
@@ -83,9 +83,11 @@ export class AppComponent {
     private dragulaService: DragulaService
   ) {
 
+    ///////////////////////////////////////////////////////////////
     this.dragulaService.createGroup("VAMPIRES", {
     });
 
+    ///////////////////////////////////////////////////////////////
     this.dragulaService.dropModel("VAMPIRES").subscribe(args => {
       console.log(args);
       console.log("sourceModel", args.sourceModel);
@@ -93,6 +95,7 @@ export class AppComponent {
     });
 
 
+    ///////////////////////////////////////////////////////////////
     dragulaService.createGroup('PERSON', {
       copy: (el, source) => {
         return source.id === 'left';
@@ -106,7 +109,14 @@ export class AppComponent {
       }
     });
 
+    this.dragulaService.dropModel("PERSON").subscribe(args => {
+      console.log(args);
+      console.log("sourceModel", args.sourceModel);
+      console.log("targetModel", args.targetModel);
+    });
 
+
+    ///////////////////////////////////////////////////////////////
     dragulaService.createGroup('COPYABLE', {
       copy: (el, source) => {
         return source.id === 'left';
@@ -116,6 +126,8 @@ export class AppComponent {
         return target?.id !== 'left';
       }
     });
+
+
 
 
 
